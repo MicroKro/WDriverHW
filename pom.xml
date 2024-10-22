@@ -89,7 +89,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <browser>chrome</browser>
-                        <base.url>https://otus.ru</base.url>
+                        <base.url>https://otus.home.kartushin.su/training.html</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
