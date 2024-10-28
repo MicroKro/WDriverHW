@@ -1,4 +1,4 @@
-package src.KioskMod;
+package src.tests.headlessMod;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class KioskMod {
+public class HeadlessMod {
 
     private WebDriver driver;
     private final String baseUrl = System.getProperty("base.url");
@@ -20,7 +20,7 @@ public class KioskMod {
     public void webDriverStart() {
         System.out.println("Запуск теста");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("kiosk");
+        options.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
 
@@ -34,12 +34,10 @@ public class KioskMod {
     }
 
     @Test
-    public void kiosk () {
+    public void headless (){
         driver.get(baseUrl);
-        var modal = driver.findElement(By.id("myModal"));
-        Assertions.assertFalse(modal.isDisplayed());
-        var element = driver.findElement(By.id("openModalBtn"));
-        element.click();
-        Assertions.assertTrue(modal.isDisplayed());
+        var element = driver.findElement(By.id("textInput"));
+        element.sendKeys("ОТУС");
+        Assertions.assertEquals("ОТУС", element.getAttribute("value"));
     }
 }
